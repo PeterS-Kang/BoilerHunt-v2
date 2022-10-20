@@ -1,11 +1,13 @@
 import { Text, View, StyleSheet, Dimensions, useState } from 'react-native'
-import React, { Component } from 'react'
-import MapView from 'react-native-maps'
+import React, { Component, useEffect } from 'react'
+import MapView, { Marker } from 'react-native-maps'
+import Locations from './Locations'
+import * as Location from 'expo-location'
+
+const Map = () => {
 
 
-export class Map extends Component {
-
-  render() {
+  
     return (
     <View className="mx-1">
       <MapView region={{
@@ -13,10 +15,11 @@ export class Map extends Component {
         longitude: -86.9209,
         latitudeDelta: 0.00122,
         longitudeDelta: 0.0421,}} 
-      style={styles.map} />
+        style={styles.map}>
+          <Locations/>
+      </MapView>
     </View>
     )
-  }
 }
 const styles = StyleSheet.create({
     map: {
