@@ -2,8 +2,8 @@ import { ScrollView, Text, View } from 'react-native'
 import React, { Component } from 'react'
 import CategoryCard from './CategoryCard'
 
-export class Categories extends Component {
-  render() {
+const Categories = () => {
+
     return (
       <View className="flex-1"
       alwaysBounceVertical={true}
@@ -19,6 +19,6 @@ export class Categories extends Component {
       </View>
     )
   }
-}
+
 
 export default Categories
