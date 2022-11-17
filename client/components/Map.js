@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, Dimensions } from 'react-native'
+import { Text, View, StyleSheet, Dimensions, Alert } from 'react-native'
 import React, { Component, useEffect, useState } from 'react'
 import MapView, { Marker } from 'react-native-maps'
 import Locations from './Locations'
@@ -40,7 +40,7 @@ var LocationListArray = [{
   longitude: -86.91078299038391
 }
 ]
-
+var completedObjectives = []
 let foregroundSubsription = null
 
 TaskManager.defineTask(LOCATION_TASK_NAME, async ({ data, error }) => {
@@ -52,15 +52,37 @@ TaskManager.defineTask(LOCATION_TASK_NAME, async ({ data, error }) => {
     // Extract location coordinates from data
     const { locations } = data
     let lat = locations[0].coords.latitude;
-    let long = locations[0].coords.longitude;
-    if (Math.pow((lat - 40.4270), 2) + Math.pow((long - -86.9209), 2) == 0.0000004) {
-      //prompt photo
-      //remove location from objectives and move to completed
+    let long = locations[0].coords.longitude;    
+
+
+    for (var i = 0; i < LocationListArray.length; i++) {
+      if (Math.sqrt(Math.pow((lat - LocationListArray[i].latitude), 2) + Math.pow((long - LocationListArray[i].longitude), 2)) <= 0.002) {
+        //prompt photo
+        //remove location from objectives and move to completed
+        console.log("true")
+        Alert.alert(
+        "You reached " + LocationListArray[i].name + "!", 
+        "Would you like to take a picture?", 
+        [{
+            text: "No",
+            
+        },
+        {
+          text: "Yes"
+        }
+      ])
+      completedObjectives.push(LocationListArray[i])
+      LocationListArray.splice(i)
+      
+      } else {
+        console.log("false")
+      }
     }
+
+    
   }
+
 })
-
-
 
 const Map = () => {
   
@@ -72,8 +94,6 @@ const Map = () => {
     latitudeDelta: 0.005122,
     longitudeDelta: 0.005421
   })
-  console.log(currentRegion)
-
 
   const [mapRegion, setMapRegion] = useState({
     latitude: 40.4260,
@@ -81,6 +101,7 @@ const Map = () => {
     latitudeDelta: 0.005122,
     longitudeDelta: 0.005421
   })
+
 
 
   {/** Location Tracker */}

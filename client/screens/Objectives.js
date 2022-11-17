@@ -1,6 +1,5 @@
 import { View, Text, SectionList, ScrollView, TouchableOpacity } from 'react-native'
 import React from 'react'
-
 const Objectives = () => {
   var LocationListArray = [{
     name: 'Stewart Center', 
@@ -34,6 +33,7 @@ const Objectives = () => {
   }
   ]
 
+  
     return (
       <ScrollView className="flex-1 bg-white px-2">
         {LocationListArray.map((places) => {
