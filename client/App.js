@@ -4,8 +4,8 @@ import { TailwindProvider } from 'tailwindcss-react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './screens/HomeScreen';
-import Objectives from './screens/Objectives';
-import Places from './screens/Places';
+import Objectives from './screens/Current Objectives';
+import Places from './screens/All Objectives';
 import Achievements from './screens/Achievements';
 
 
@@ -20,8 +20,8 @@ export default function App() {
       <TailwindProvider>
          <Stack.Navigator>
           <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="Objectives" component={Objectives} />
-          <Stack.Screen name="Places" component={Places} />
+          <Stack.Screen name="Current Objectives" component={Objectives} />
+          <Stack.Screen name="All Objectives" component={Places} />
           <Stack.Screen name="Achievements" component={Achievements} />
         </Stack.Navigator>
       </TailwindProvider>

@@ -11,8 +11,8 @@ const Categories = () => {
       
       >
         {/* CategoryCard */}
-        <CategoryCard title="Objectives" />
-        <CategoryCard title="Places" />
+        <CategoryCard title="Current Objectives" />
+        <CategoryCard title="All Objectives" />
         
       </View>
     )

@@ -9,45 +9,6 @@ import { Marker } from 'react-native-maps'
 
 const LOCATION_TASK_NAME = "LOCATION_TASK_NAME"
 
-var LocationListArray = [{
-  name: 'Stewart Center', 
-  latitude: 40.4250, 
-  longitude: -86.9126,
-  completed: false
-}, 
-{
-  name: 'Windsor Dining Court',
-  latitude: 40.4270,
-  longitude: -86.9209,
-  completed: false
-},
-{
-  name: 'Neil Armstrong Hall of Engineering',
-  latitude:40.4310,
-  longitude:-86.9148,
-  completed: false
-},
-{
-  name: "Harrison Hall",
-  latitude: 40.42490544985265, 
-  longitude: -86.92642550317369,
-  completed: false
-},
-{
-  name: "Discovery Learning Research Center",
-  latitude: 40.42118918194457, 
-  longitude: -86.92275087681448,
-  completed: false
-},
-{
-  name: "Krannert School of Management",
-  latitude: 40.423744457373104, 
-  longitude: -86.91078299038391,
-  completed: false
-}
-]
-var completed = false
-
 
 let foregroundSubsription = null
 
@@ -105,8 +66,13 @@ const Map = () => {
     let data = locations.filter(places => places.completed == false)
     for (var i = 0; i < data.length; i++) {
 
-      if (Math.sqrt(Math.pow((currentRegion.latitude - data[i].latitude), 2) + Math.pow((currentRegion.longitude - data[i].longitude), 2)) <= 0.002) {
+      if (Math.sqrt(Math.pow((currentRegion.latitude - data[i].latitude), 2) + Math.pow((currentRegion.longitude - data[i].longitude), 2)) <= 0.0002) {
         console.log(true)
+        console.log(currentRegion.latitude)
+        console.log(currentRegion.longitude)
+        console.log(locations[i].name)
+        console.log(locations[i].latitude)
+        console.log(locations[i].longitude)
         updateLocation(locations[i])
         Alert.alert(
           "You reached " + locations[i].name, 

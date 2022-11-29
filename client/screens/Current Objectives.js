@@ -1,8 +1,8 @@
-import { View, Text, SectionList, ScrollView, TouchableOpacity } from 'react-native'
+import { View, Text, SectionList, ScrollView, TouchableOpacity, SafeAreaView } from 'react-native'
 import { useState, useEffect } from 'react'
 import React from 'react'
 import axios from 'axios'
-import Places from './Places'
+import Places from './All Objectives'
 
 const Objectives = () => {
   
@@ -23,6 +23,7 @@ const Objectives = () => {
 
 
       return (
+        <SafeAreaView>
       <ScrollView className="flex-1 bg-grey-200 px-2 top-2">
         {location.filter(places => places.completed == false).map(({name}) => {
           return (
@@ -34,6 +35,7 @@ const Objectives = () => {
           )
         })}
       </ScrollView>
+      </SafeAreaView>
    )
   }
 

@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Button, ScrollView } from 'react-native'
+import {Text, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native'
 import React, { Component, useEffect, useState } from 'react'
 import axios from 'axios'
 
@@ -18,6 +18,7 @@ const Places = () => {
 console.log(location)
 
     return (
+      <SafeAreaView>
       <ScrollView className="bg-white px-2 flex-1">
         {location.map((locations) => {
           return (
@@ -29,6 +30,7 @@ console.log(location)
           )
         })}
       </ScrollView>
+      </SafeAreaView>
     )
   }
 
