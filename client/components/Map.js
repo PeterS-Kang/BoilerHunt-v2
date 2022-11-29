@@ -68,11 +68,6 @@ const Map = () => {
 
       if (Math.sqrt(Math.pow((currentRegion.latitude - data[i].latitude), 2) + Math.pow((currentRegion.longitude - data[i].longitude), 2)) <= 0.0002) {
         console.log(true)
-        console.log(currentRegion.latitude)
-        console.log(currentRegion.longitude)
-        console.log(locations[i].name)
-        console.log(locations[i].latitude)
-        console.log(locations[i].longitude)
         updateLocation(locations[i])
         Alert.alert(
           "You reached " + locations[i].name, 
