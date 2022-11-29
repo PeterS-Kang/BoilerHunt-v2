@@ -1,9 +1,11 @@
-import { View, Text, SafeAreaView, Image, TextInput, ScrollView } from 'react-native';
-import React, { useLayoutEffect } from 'react';
+import { View, Text, SafeAreaView, Image, Button, ScrollView } from 'react-native';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-
+import axios from 'axios';
 import Map from '../components/Map';
 import Categories from '../components/Categories';
+
+
 const HomeScreen = () => {
     const navigation = useNavigation();
 
@@ -13,6 +15,22 @@ const HomeScreen = () => {
         });
     }, []);
 
+    const [locations, setLocations] = useState([])
+
+    useEffect(() => {
+        axios.get('http://localhost:4500/locations/')
+          .then(response => {
+            if (response.data.length > 0) {
+              setLocations(response.data.map(locations => locations.name))
+            }
+          })
+          .catch(err => console.log(err.response.data))
+      }, [locations.length])
+
+
+      const resetLocation = () => {
+
+      }
 
 return (
     <SafeAreaView className="bg-white pt-5 flex-1">
@@ -35,16 +53,7 @@ return (
         </View>
 
         {/*Search*/}
-        <View className="flex-row items-center space-x-2 pb-2 mx-3 px-4">
-            <View className="flex-row flex-1 space-x-2 bg-gray-200 p-3">
-                <TextInput
-                 placeholder="Search"
-                 keyboardType='default'
-                />
-            </View>
 
-
-        </View>
 
         {/* Body */}
         <ScrollView 
@@ -56,7 +65,11 @@ return (
 
             {/* Categories */}
             <Categories/>
-
+            
+            <Button
+                title='Reset'
+                onPress={resetLocation()}
+            />
 
 
 

@@ -13,7 +13,6 @@ const Categories = () => {
         {/* CategoryCard */}
         <CategoryCard title="Objectives" />
         <CategoryCard title="Places" />
-        <CategoryCard title="Achievements" /> 
         
       </View>
     )

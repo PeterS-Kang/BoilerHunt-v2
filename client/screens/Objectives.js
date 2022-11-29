@@ -1,53 +1,36 @@
 import { View, Text, SectionList, ScrollView, TouchableOpacity } from 'react-native'
+import { useState, useEffect } from 'react'
 import React from 'react'
+import axios from 'axios'
+import Places from './Places'
+
 const Objectives = () => {
-  var LocationListArray = [{
-    name: 'Stewart Center', 
-    latitude: 40.4250, 
-    longitude: -86.9126
-  }, 
-  {
-    name: 'Windsor Dining Court',
-    latitude: 40.4270,
-    longitude: -86.9209
-  },
-  {
-    name: 'Neil Armstrong Hall of Engineering',
-    latitude:40.4310,
-    longitude:-86.9148
-  },
-  {
-    name: "Harrison Hall",
-    latitude: 40.42490544985265, 
-    longitude: -86.92642550317369
-  },
-  {
-    name: "Discovery Learning Research Center",
-    latitude: 40.42118918194457, 
-    longitude: -86.92275087681448
-  },
-  {
-    name: "Krannert School of Management",
-    latitude: 40.423744457373104, 
-    longitude: -86.91078299038391
-  }
-  ]
-
   
-    return (
-      <ScrollView className="flex-1 bg-white px-2">
-        {LocationListArray.map((places) => {
+  const [location, setLocation] = useState([])
+
+
+  useEffect(() => {
+    axios.get('http://localhost:4500/locations/')
+      .then(response => {
+        if (response.data.length > 0) {
+          setLocation(response.data.map(locations => locations))
+        }
+      })
+      .catch(err => console.log(err.response.data))
+  }, [location.length])
+  console.log(location)
+    
+
+
+      return (
+      <ScrollView className="flex-1 bg-grey-200 px-2 top-2">
+        {location.filter(places => places.completed == false).map(({name}) => {
           return (
-            <TouchableOpacity 
-            className="container-sm box-border p-10 border-2 border-white flex-1 mb-1 bg-blue-500 px-8 rounded-lg"
-            >
-              <Text className="px-1 font-bold text-white">Go to</Text> 
-              <Text className="font-bold text-xl text-left text-white">
-                {places.name}
-              </Text>
+            <TouchableOpacity className="container-sm Button-border p-10 border-2 border-white flex-1 mb-1 bg-blue-500 px-8 rounded-lg">
+             <Text className="font-bold text-xl text-left text-white">
+              {name}
+             </Text>
             </TouchableOpacity>
-
-
           )
         })}
       </ScrollView>

@@ -1,6 +1,5 @@
 import { View, Text, TouchableOpacity, Button, ScrollView } from 'react-native'
 import React, { Component, useEffect, useState } from 'react'
-import {addLocation, getLocation} from "../services/locationServices"
 import axios from 'axios'
 
 const Places = () => {
