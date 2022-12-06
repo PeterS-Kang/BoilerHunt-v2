@@ -42,38 +42,31 @@ return (
                 }}
                 className="h-7 w-7 bg-gray-300, , rounded-full"
             />
-        <View>
-            <Text className="font-bold text-xl">
-                BoilerHunt
-            </Text>
-            <Text className="font-bold text-l">
-                Purdue University
-            </Text>
+            <View>
+                <Text className="font-bold text-xl">
+                    BoilerHunt
+               </Text>
+              <Text className="font-bold text-l">
+                 Purdue University
+              </Text>
+            </View>
         </View>
-        </View>
-
-        {/*Search*/}
-
 
         {/* Body */}
-        <ScrollView 
+        <View 
         alwaysBounceVertical={true}
-        className="bg-gray-100">
+        className="border-2 border-gray-300 rounded-lg mx-1">
 
             {/* Map */}
-            <Map/>
+            <Map/>            
 
-            {/* Categories */}
+
+
+        </View>
+        <View>
+          {/* Categories */}
             <Categories/>
-            
-            <Button
-                title='Reset'
-                onPress={resetLocation()}
-            />
-
-
-
-        </ScrollView>
+        </View>
     </SafeAreaView>
 
   );
