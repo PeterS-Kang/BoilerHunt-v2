@@ -10,7 +10,7 @@ const CategoryCard = ({title}) => {
      onPress={() =>{
       navigation.navigate(title)
      }}
-     className="relative mr-2">
+     >
       <View 
       className=
       "box-border h-150 w-200 p-5 border-2 border-white bg-gray-200 flex-2 mx-1 rounded-md">

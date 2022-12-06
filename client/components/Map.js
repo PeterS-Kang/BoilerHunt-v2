@@ -66,11 +66,14 @@ const Map = () => {
     let data = locations.filter(places => places.completed == false)
     for (var i = 0; i < data.length; i++) {
 
-      if (Math.sqrt(Math.pow((currentRegion.latitude - data[i].latitude), 2) + Math.pow((currentRegion.longitude - data[i].longitude), 2)) <= 0.0002) {
+      if (Math.sqrt(Math.pow((currentRegion.latitude - data[i].latitude), 2) + Math.pow((currentRegion.longitude - data[i].longitude), 2)) <= 0.00002) {
         console.log(true)
-        updateLocation(locations[i])
+        console.log(currentRegion.latitude + " " + currentRegion.longitude)
+        console.log(data[i].latitude + " " + data[i].longitude)
+        console.log(data[i])
+        updateLocation(data[i])
         Alert.alert(
-          "You reached " + locations[i].name, 
+          "You reached " + data[i].name, 
           "", 
           [
             {
@@ -153,13 +156,14 @@ const Map = () => {
 
     return (
       
-    <View className="mx-1">
+    <View>
 
 
       <MapView 
         region={currentRegion}
         style={styles.map}
         showsUserLocation={true}
+
         >
           {locations.filter(places => places.completed == false).map((places) => {
             return (
@@ -178,8 +182,9 @@ const Map = () => {
 }
 const styles = StyleSheet.create({
     map: {
-      width: Dimensions.get("window").width - 6,
-      height: (Dimensions.get("window").height - (Dimensions.get("window").height * 0.336))
+      width: Dimensions.get("window").width - 12,
+      height: (Dimensions.get("window").height - (Dimensions.get("window").height * 0.336)),
+      borderRadius: 5
     },
   });
 
